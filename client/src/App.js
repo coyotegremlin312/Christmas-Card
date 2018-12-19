@@ -41,7 +41,8 @@ class LeaveMessage extends Component {
       name: '',
       message: '',
     }
-    
+    this.handleChange = this.handleChange.bind(this);
+    this.addToMessageBoard = this.addToMessageBoard.bind(this);
   }
 
   handleChange = (event) => {
@@ -50,9 +51,40 @@ class LeaveMessage extends Component {
     })
   }
 
+  addToMessageBoard = (event) => {
+    const URL = 'http://localhost:5000/messages'
+    event.preventDefault()
+    fetch(URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        message: this.state.message,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          //   console.log('Request success: ', res)
+          this.setState({
+            name: '',
+            message: '',
+          })
+        } else {
+          //   console.log('Request failure: ', res)
+        }
+      })
+      .catch((error) => {
+        // console.log('Request failure: ', error)
+      })
+  }
+
   render() {
     return (
       <div className="MessageZone">
+        <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
         <form onSubmit={this.addToMessageBoard} className="guestBookForm">
           <textarea
             className="InputMessage"
