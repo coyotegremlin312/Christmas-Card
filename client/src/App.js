@@ -31,19 +31,55 @@ class App extends Component {
 
 
 
+
+
 class LeaveMessage extends Component {
-  render(){
+  
+  constructor() {
+    super()
+    this.state = {
+      name: '',
+      message: '',
+    }
+    
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  render() {
     return (
       <div className="MessageZone">
-        <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
-        <div className="SendZone">
-          <input type="text" className="InputMessage" placeholder="Write Message Here"></input>
-          <input type="text" className="InputName" placeholder="Write Name Here"></input>
-          <button className="PostButton">Post Message</button>
-        </div>
+        <form onSubmit={this.addToMessageBoard} className="guestBookForm">
+          <textarea
+            className="InputMessage"
+            type="text"
+            placeholder="Write Message Here"
+            name="message"
+            value={this.state.message}
+            onChange={this.handleChange}
+          />
+          <input
+            className="InputName"
+            type="text"
+            name="name"
+            placeholder="Write Name Here"
+            onChange={this.handleChange}
+            value={this.state.name}
+          />
+          <div className="Submit">
+            <button type="submit" value="Submit" className="PostButton">
+              Submit Message
+            </button>
+          </div>
+        </form>
       </div>
     )
-  }
+	}
+
 }
 
 class MessageBoard extends Component {
@@ -61,3 +97,16 @@ class PostFromInput extends Component{
 }
 
 export default App;
+
+/*render(){
+  return (
+    <div className="MessageZone">
+      <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
+      <div className="SendZone">
+        <input type="text" className="InputMessage" placeholder="Write Message Here"></input>
+        <input type="text" className="InputName" placeholder="Write Name Here"></input>
+        <button className="PostButton">Post Message</button>
+      </div>
+    </div>
+  )
+}*/
