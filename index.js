@@ -4,8 +4,10 @@ let _ = require('underscore');
 const path = require('path');
 
 let app = express();
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 5000;
 let messages = [];
+
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
