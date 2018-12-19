@@ -30,9 +30,6 @@ class App extends Component {
 }
 
 
-
-
-
 class LeaveMessage extends Component {
   
   constructor() {
@@ -85,7 +82,7 @@ class LeaveMessage extends Component {
     return (
       <div className="MessageZone">
         <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
-        <form onSubmit={this.addToMessageBoard} className="guestBookForm">
+        <form onSubmit={this.addToMessageBoard} className="SendZone">
           <textarea
             className="InputMessage"
             type="text"
@@ -104,7 +101,7 @@ class LeaveMessage extends Component {
           />
           <div className="Submit">
             <button type="submit" value="Submit" className="PostButton">
-              Submit Message
+              Post Message
             </button>
           </div>
         </form>
@@ -115,18 +112,48 @@ class LeaveMessage extends Component {
 }
 
 class MessageBoard extends Component {
+  
+  constructor() {
+    super()
+    this.state = {
+      messages: '',
+      messageList: [],
+    }
+    this.createList = this.createList.bind(this);
+  }
+
+  componentDidMount = () => {
+    const URL = 'http://localhost:5000/messages'
+    fetch(URL)
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({ messages: res })
+      })
+      .then(() => {
+        const messageList = this.state.messages.map(this.createList)
+        this.setState({ messageList })
+      })
+  }
+
+  createList = (signature) => {
+    return (
+      <div key={signature._id} className="signature">
+        <h3 className="h3msg">{signature.message}</h3>
+        <h2 className="h2sig">-{signature.name}</h2>
+      </div>
+    )
+  }
+  
   render(){
     return(
       <div className="MessageBoardBox">
       <h1 className="Title">Holiday Message Board</h1>
+      <div className="MessageBoardMessages">{this.state.messageList}</div>
       </div>
     )
   }
 }
 
-class PostFromInput extends Component{
-
-}
 
 export default App;
 

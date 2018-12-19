@@ -139,3 +139,26 @@
   border-color: #CCB074;
   font-family: Comic Sans MS;
 }
+
+.MessageBoardMessages {
+  height: 600px;
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color:#64AD39;
+}
+
+.h2sig {
+  text-align: right;
+  font-size: 13px;
+  color: #F43651;
+  width: 235px;
+  border-bottom: black dashed 2px;
+}
+
+.h3msg {
+  padding-top: 1.5vh;
+  font-size: 17px;
+  color: black;
+  width: 235px;
+}
