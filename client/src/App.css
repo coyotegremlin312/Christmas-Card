@@ -140,6 +140,9 @@
   border: 10px solid;
   border-color: #CCB074;
   font-family: Comic Sans MS;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .MessageBoardMessages {
@@ -158,7 +161,7 @@
   text-align: right;
   font-size: 17px;
   color: #CCB074;
-  width: 500px;
+  width: 400px;
   border-bottom: black dashed 2px;
 }
 
@@ -166,5 +169,6 @@
   padding-top: 1.5vh;
   font-size: 23px;
   color: black;
-  width: 500px;
+  width: 400px;
+  align-self: center;
 }
