@@ -21,8 +21,8 @@ class App extends Component {
           <img className="Stamp" src="https://vignette.wikia.nocookie.net/peanuts/images/3/3c/StampFlyingAce.jpg/revision/latest?cb=20140422132642"></img>
         </header>
         <div className="MessageCard">
-          <LeaveMessage/>
-          <MessageBoard/>
+          <LeaveMessage />
+          <MessageBoard />
         </div>
       </div>
     );
@@ -49,7 +49,7 @@ class LeaveMessage extends Component {
   }
 
   addToMessageBoard = (event) => {
-    const URL = 'http://localhost:5000/messages'
+    const URL = 'https://glacial-inlet-67939.herokuapp.com/messages'
     event.preventDefault()
     fetch(URL, {
       method: 'POST',
@@ -64,17 +64,17 @@ class LeaveMessage extends Component {
     })
       .then((res) => {
         if (res.status === 200) {
-          //   console.log('Request success: ', res)
+          console.log('Request success: ', res)
           this.setState({
             name: '',
             message: '',
           })
         } else {
-          //   console.log('Request failure: ', res)
+          console.log('Request failure: ', res)
         }
       })
       .catch((error) => {
-        // console.log('Request failure: ', error)
+        console.log('Request failure: ', error)
       })
   }
 
@@ -123,7 +123,7 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-    const URL = 'http://localhost:5000/messages'
+    const URL = 'https://glacial-inlet-67939.herokuapp.com/messages'
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
