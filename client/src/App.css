@@ -36,20 +36,33 @@
 }
 
 .Note {
-  font-family: Comic Sans MS;
-  font-size: 40px;
-  font-weight: bolder;
-  text-align: left;
   padding: 10px;
 }
 
 .Hola {
+  font-family: Comic Sans MS;
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: left;
   color: #F7020A;
   padding-bottom: 10px;
 }
 
 .BodyOfNote {
+  font-family: Comic Sans MS;
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: left;
   color: #0572B3;
+}
+
+.OurSignature {
+  font-family: cursive;
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: right;
+  color: #D06233;
+  padding-top: 10px;
 }
 
 .Stamp{
