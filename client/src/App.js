@@ -100,7 +100,7 @@ class LeaveMessage extends Component {
     return (
       <div className="MessageZone">
         <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
-        <form onSubmit={this.addToMessageBoard} onChange={this.showOnMessageBoard} className="SendZone">
+        <form onSubmit={this.addToMessageBoard} className="SendZone">
           <textarea
             className="InputMessage"
             type="text"
@@ -166,7 +166,7 @@ class MessageBoard extends Component {
     return(
       <div className="MessageBoardBox">
       <h1 className="Title">Holiday Message Board</h1>
-      <div className="MessageBoardMessages">{this.state.messageList}</div>
+      <div className="MessageBoardMessages" onChange={this.componentDidMount}>{this.state.messageList}</div>
       </div>
     )
   }
