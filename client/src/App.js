@@ -40,7 +40,6 @@ class LeaveMessage extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToMessageBoard = this.addToMessageBoard.bind(this);
-    this.showOnMessageBoard = this.showOnMessageBoard.bind(this);
   }
 
   handleChange = (event) => {
