@@ -23,7 +23,6 @@ class App extends Component {
         </header>
         <div className="MessageCard">
           <LeaveMessage />
-          <MessageBoard />
         </div>
       </div>
     );
@@ -38,15 +37,28 @@ class LeaveMessage extends Component {
     this.state = {
       name: '',
       message: '',
+      messages: '',
+      messageList: [],
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToMessageBoard = this.addToMessageBoard.bind(this);
+    this.createList = this.createList.bind(this);
+    this.displayMessageBoard = this.displayMessageBoard.bind(this);
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  }
+
+  createList = (signature) => {
+    return (
+      <div key={signature._id} className="signature">
+        <h3 className="h3msg">{signature.message}</h3>
+        <h2 className="h2sig">-{signature.name}</h2>
+      </div>
+    )
   }
 
   addToMessageBoard = (event) => {
@@ -70,6 +82,7 @@ class LeaveMessage extends Component {
             name: '',
             message: '',
           });
+          this.displayMessageBoard();
         } else {
           console.log('Request failure: ', res)
         }
@@ -79,8 +92,22 @@ class LeaveMessage extends Component {
       })
   }
 
+  displayMessageBoard = (event) => {
+    const URL = "https://glacial-inlet-67939.herokuapp.com/messages"
+    fetch(URL)
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({ messages: res })
+      })
+      .then(() => {
+        const messageList = this.state.messages.map(this.createList)
+        this.setState({ messageList })
+      })
+  }
+  
   render() {
     return (
+      <div className="Everything">
       <div className="MessageZone">
         <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
         <form onSubmit={this.addToMessageBoard} className="SendZone">
@@ -107,53 +134,13 @@ class LeaveMessage extends Component {
           </div>
         </form>
       </div>
+      <div className="MessageBoardBox">
+        <h1 className="Title">Holiday Message Board</h1>
+        <div className="MessageBoardMessages">{this.state.messageList}</div>
+      </div>
+    </div>
     )
 	}
-
 }
-
-class MessageBoard extends Component {
-  
-  constructor() {
-    super()
-    this.state = {
-      messages: '',
-      messageList: [],
-    }
-    this.createList = this.createList.bind(this);
-  }
-
-  componentDidMount = () => {
-    const URL = "https://glacial-inlet-67939.herokuapp.com/messages"
-    fetch(URL)
-      .then((res) => res.json())
-      .then((res) => {
-        this.setState({ messages: res })
-      })
-      .then(() => {
-        const messageList = this.state.messages.map(this.createList)
-        this.setState({ messageList })
-      })
-  }
-
-  createList = (signature) => {
-    return (
-      <div key={signature._id} className="signature">
-        <h3 className="h3msg">{signature.message}</h3>
-        <h2 className="h2sig">-{signature.name}</h2>
-      </div>
-    )
-  }
-  
-  render(){
-    return(
-      <div className="MessageBoardBox">
-      <h1 className="Title">Holiday Message Board</h1>
-      <div className="MessageBoardMessages">{this.state.messageList}</div>
-      </div>
-    )
-  }
-}
-
 
 export default App;
