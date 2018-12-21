@@ -82,7 +82,8 @@ class LeaveMessage extends Component {
 
   showOnMessageBoard = (event) => {
     const URL = "https://glacial-inlet-67939.herokuapp.com/messages"
-    fetch(URL)
+    fetch(URL, {
+      method: 'GET'})
       .then((res) => {
         if (res.status === 200) {
           console.log('Request success: ', res)
