@@ -69,7 +69,7 @@ class LeaveMessage extends Component {
           this.setState({
             name: '',
             message: '',
-          });
+          }).then(this.showOnMessageBoard());
         } else {
           console.log('Request failure: ', res)
         }
@@ -166,7 +166,7 @@ class MessageBoard extends Component {
     return(
       <div className="MessageBoardBox">
       <h1 className="Title">Holiday Message Board</h1>
-      <div className="MessageBoardMessages" onChange={this.componentDidMount}>{this.state.messageList}</div>
+      <div className="MessageBoardMessages">{this.state.messageList}</div>
       </div>
     )
   }
