@@ -16,7 +16,7 @@ class App extends Component {
           <img className="Us" src={UseTheForce}></img>
           <div className="Note"> 
             <div className="Hola">Hello All!</div>
-            <div className="BodyOfNote">We hope you are having a wonderful holiday season! May your trees be filled with gifts, your table be full of yummy (and probably bad for you) food, and may your days be filled with family and friends! Have a wonderful Christmas, New Year, and 2019! </div>
+            <div className="BodyOfNote">We hope you are having a wonderful holiday season! May your trees be filled with gifts, your table be full of yummy (and probably bad for you) food, and may your days be filled with family and friends! Have a wonderful Christmas, New Year, and 2019!</div>
           </div>
           <img className="Stamp" src="https://vignette.wikia.nocookie.net/peanuts/images/3/3c/StampFlyingAce.jpg/revision/latest?cb=20140422132642"></img>
         </header>
