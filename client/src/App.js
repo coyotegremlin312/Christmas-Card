@@ -15,8 +15,8 @@ class App extends Component {
         <header className="Postcard">
           <img className="Us" src={UseTheForce}></img>
           <div className="Note"> 
-            <div className="Hola">Hola!</div>
-            <div className="BodyOfNote">We hope you have had a wonderful 2018!</div>
+            <div className="Hola">Hello All!</div>
+            <div className="BodyOfNote">We hope you are having a wonderful holiday season! May your trees be filled with gifts, your table be full of yummy (and probably bad for you) food, and may your days be filled with family and friends! Have a wonderful Christmas, New Year, and 2019! </div>
           </div>
           <img className="Stamp" src="https://vignette.wikia.nocookie.net/peanuts/images/3/3c/StampFlyingAce.jpg/revision/latest?cb=20140422132642"></img>
         </header>
@@ -69,24 +69,7 @@ class LeaveMessage extends Component {
           this.setState({
             name: '',
             message: '',
-          }).then(this.showOnMessageBoard());
-        } else {
-          console.log('Request failure: ', res)
-        }
-      })
-      .catch((error) => {
-        console.log('Request failure: ', error)
-      })
-  }
-
-  showOnMessageBoard = (event) => {
-    const URL = "https://glacial-inlet-67939.herokuapp.com/messages"
-    fetch(URL, {
-      method: 'GET'})
-      .then((res) => {
-        if (res.status === 200) {
-          console.log('Request success: ', res)
-          return res.json();
+          });
         } else {
           console.log('Request failure: ', res)
         }
