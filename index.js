@@ -2,6 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let _ = require('underscore');
 const path = require('path');
+var db = require('./db.js');
 
 let app = express();
 let PORT = process.env.PORT || 5000;
@@ -16,19 +17,34 @@ app.get('/', function (req, res) {
 });
 
 app.get('/messages', function(req, res){
-    res.json(messages);
+    var query = req.query;
+	var where = {};
+
+	if (query.hasOwnProperty('name')) {
+		where.name = query.name;
+	}
+
+	if (query.hasOwnProperty('message') && query.message.length > 0) {
+		where.message = query.message;
+	}
+
+	db.note.findAll({
+		where: where
+	}).then(function(messages) {
+		res.json(messages);
+	}, function(e) {
+		res.status(500).send();
+	});
 });
 
 app.post('/messages', function(req, res){
-    let body = _.pick(req.body, "message", 'name');
+    var body = _.pick(req.body, 'message', 'name');
 
-    if (!_.isString(body.name) || !_.isString(body.message) || body.message.trim().length === 0) {
-		return res.status(400).send();
-    }
-
-    messages.push(body);
-    
-    res.json(body);
+	db.note.create(body).then(function(note) {
+		res.json(note.toJSON());
+	}, function(e) {
+		res.status(400).json(e);
+	});
 });
 
 app.listen(PORT, function () {
