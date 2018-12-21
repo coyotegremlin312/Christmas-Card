@@ -49,7 +49,7 @@ class LeaveMessage extends Component {
   }
 
   addToMessageBoard = (event) => {
-    const URL = 'https://glacial-inlet-67939.herokuapp.com/messages'
+    const URL = 'http://localhost:5000/messages'
     event.preventDefault()
     fetch(URL, {
       method: 'POST',
@@ -123,7 +123,7 @@ class MessageBoard extends Component {
   }
 
   componentDidMount = () => {
-    const URL = 'https://glacial-inlet-67939.herokuapp.com/messages'
+    const URL = 'http://localhost:5000/messages'
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {

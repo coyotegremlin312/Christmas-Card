@@ -47,6 +47,9 @@ app.post('/messages', function(req, res){
 	});
 });
 
-app.listen(PORT, function () {
-	console.log('Express listening on port' + PORT + ' !');
+db.sequelize.sync().then(function(){
+	app.listen(PORT, function () {
+		console.log('Express listening on port' + PORT + ' !');
+	});
 });
+
