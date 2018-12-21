@@ -40,6 +40,7 @@ class LeaveMessage extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToMessageBoard = this.addToMessageBoard.bind(this);
+    this.showOnMessageBoard = this.showOnMessageBoard.bind(this);
   }
 
   handleChange = (event) => {
@@ -78,11 +79,27 @@ class LeaveMessage extends Component {
       })
   }
 
+  showOnMessageBoard = (event) => {
+    const URL = "https://glacial-inlet-67939.herokuapp.com/messages"
+    fetch(URL)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log('Request success: ', res)
+          return res.json();
+        } else {
+          console.log('Request failure: ', res)
+        }
+      })
+      .catch((error) => {
+        console.log('Request failure: ', error)
+      })
+  }
+
   render() {
     return (
       <div className="MessageZone">
         <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
-        <form onSubmit={this.addToMessageBoard} className="SendZone">
+        <form onSubmit={this.addToMessageBoard && this.showOnMessageBoard} className="SendZone">
           <textarea
             className="InputMessage"
             type="text"
@@ -94,10 +111,10 @@ class LeaveMessage extends Component {
           <input
             className="InputName"
             type="text"
-            name="name"
             placeholder="Write Name Here"
-            onChange={this.handleChange}
+            name="name"
             value={this.state.name}
+            onChange={this.handleChange}
           />
           <div className="Submit">
             <button type="submit" value="Submit" className="PostButton">
