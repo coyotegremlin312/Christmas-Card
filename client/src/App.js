@@ -46,6 +46,10 @@ class LeaveMessage extends Component {
     this.displayMessageBoard = this.displayMessageBoard.bind(this);
   }
 
+  componentDidMount = () => {
+    this.displayMessageBoard();
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
