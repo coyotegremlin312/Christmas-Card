@@ -70,6 +70,7 @@ class LeaveMessage extends Component {
             name: '',
             message: '',
           })
+          this.showOnMessageBoard();
         } else {
           console.log('Request failure: ', res)
         }
@@ -99,7 +100,7 @@ class LeaveMessage extends Component {
     return (
       <div className="MessageZone">
         <div className="MessageDirections">Want to send us a holiday message back? Just write it below and it will display on our Holiday Message Board.</div>
-        <form onSubmit={this.addToMessageBoard && this.showOnMessageBoard} className="SendZone">
+        <form onSubmit={this.addToMessageBoard} className="SendZone">
           <textarea
             className="InputMessage"
             type="text"
