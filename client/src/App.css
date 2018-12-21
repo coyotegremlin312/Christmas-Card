@@ -39,13 +39,13 @@
   font-family: Comic Sans MS;
   font-size: 40px;
   font-weight: bolder;
-  text-decoration: underline;
   text-align: left;
   padding: 10px;
 }
 
 .Hola {
   color: #F7020A;
+  padding-bottom: 10px;
 }
 
 .BodyOfNote {
